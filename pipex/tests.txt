@@ -1,0 +1,23 @@
+---------------  Test 1  ---------------
+./pipex infile "ls -l" "cat" outfile
+< infile ls -l | cat > outfile
+
+---------------  Test 2  ---------------
+./pipex infile "ls -l" "wc -l" outfile
+< infile ls -l | wc -l > outfile
+
+---------------  Test 3  ---------------
+./pipex infile "grep 1" "wc -w" outfile
+< infile grep 1 | wc -w > outfile
+
+---------------  Test 4  ---------------
+./pipex infile "ls -l" "sort -k5" outfile
+< infile ls -l | sort -k5 > outfile
+
+---------------  Test 5 - Error ---------------
+valgrind ./pipex infile "nonexistent_command" "wc -l" outfile
+< infile nonexistent_command | wc -l > outfile
+
+---------------  Test 6 - Error ---------------
+./pipex infile "ls" "wc -l -invalid-option" outfile
+< infile ls | wc -l -invalid-option > outfile
