@@ -56,10 +56,12 @@ int	main(int argc, char *argv[], char *envp[])
 
 	if (argc != 5)
 		error("Usage: ./pipex infile \"cmd1\" \"cmd2\" outfile\n");
+	if (envp[0] == NULL)
+		error("env is empty\n");
 	// create pipe
 	if (pipe(fd_pipe) == -1)
 		error("create pipe failed\n");
-	// create fork
+	// create multiple processes
 	pid = fork();
 	if (pid == -1)
 		error("fork() failed\n");
