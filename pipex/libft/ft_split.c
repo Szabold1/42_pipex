@@ -12,23 +12,8 @@
 
 #include "libft.h"
 
-// copy string 'src' to string 'dest'
-static char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
-}
-
 // count number of substrings in string 'str' separated by char 'c'
-static int	count_substr(char const *str, char c)
+static int	count_substrs(char const *str, char c)
 {
 	int	i;
 	int	count;
@@ -49,85 +34,103 @@ static int	count_substr(char const *str, char c)
 	return (count);
 }
 
-// free 'strings' array if malloc fails
-static int	handle_err(int str_index, char **strings)
+// count number of characters in substring starting at index 'i'
+int get_substr_len(char const *str, char c, int i)
 {
-	if (strings[str_index] == NULL)
+	int	count;
+
+	count = 0;
+	while (str[i] != c && str[i])
 	{
-		while (str_index >= 0)
-			free(strings[str_index--]);
-		free(strings);
-		return (0);
+		count++;
+		i++;
 	}
-	return (1);
+	return (count);
 }
 
-// fill 'strings' array with substrings
-static int	handle_substr(char const *str, char c, char **strings)
+// free 'arr' array and return 0
+int free_arr(char **arr, int str_index)
 {
-	int		i;
-	int		j;
-	int		str_index;
-	char	sub_str[10000];
+	while (str_index >= 0)
+		free(arr[str_index--]);
+	free(arr);
+	return (0);
+}
+
+// fill 'arr' array with substrings
+// return 1 if successful, 0 if malloc fails
+int	fill_arr(char **arr, char const *str, char c)
+{
+	int	i;
+	int	str_index;
+	int	substr_len;
 
 	i = 0;
 	str_index = 0;
+	substr_len = 0;
 	while (str[i])
 	{
-		j = 0;
-		while (str[i] != c && str[i])
-			sub_str[j++] = str[i++];
-		if (j > 0)
+		while (str[i] == c)
+			i++;
+		substr_len = get_substr_len(str, c, i);
+		if (substr_len > 0)
 		{
-			sub_str[j] = '\0';
-			strings[str_index] = malloc(sizeof(char) * (j + 1));
-			if (handle_err(str_index, strings) == 0)
-				return (0);
-			ft_strcpy(strings[str_index], sub_str);
+			arr[str_index] = malloc(sizeof(char) * (substr_len + 1));
+			if (arr[str_index] == NULL)
+				return (free_arr(arr, str_index));
+			ft_strlcpy(arr[str_index], &str[i], substr_len + 1);
 			str_index++;
 		}
-		if (str[i] == c && str[i])
-			i++;
+		i += substr_len;
 	}
 	return (1);
 }
 
 // split string 'str' into substrings using char 'c' as delimiter
+// return array of substrings with NULL ending if successful, NULL if fails
 char	**ft_split(char const *str, char c)
 {
-	char	**strings;
-	int		substrings;
+	int		substrs;
+	char	**arr;
 
 	if (str == NULL)
 		return (NULL);
-	substrings = count_substr(str, c);
-	strings = (char **)malloc(sizeof(char *) * (substrings + 1));
-	if (strings == NULL || handle_substr(str, c, strings) == 0)
+	substrs = count_substrs(str, c);
+	arr = (char **)malloc((substrs + 1) * sizeof(char *));
+	if (arr == NULL)
 		return (NULL);
-	if (substrings == 0)
-	{
-		strings[0] = NULL;
-		return (strings);
-	}
-	strings[substrings] = NULL;
-	return (strings);
+	arr[substrs] = NULL;
+	if (substrs == 0)
+		return (arr);
+	if (fill_arr(arr, str, c) == 0)
+		return (NULL);
+	return (arr);
 }
-/*
-#include <stdio.h>
-int main(void)
-{
-	//char *str = " <>   split    this by  space!  <>  ";
-	char *str = "hi";
-	//char *str = "";
-	char **res_arr = ft_split(NULL, ' ');
 
-	printf("str: %s\n", str);
-	for (int i = 0; res_arr[i - 1]; i++)
-		printf("res_arr[%d] %s\n", i, res_arr[i]);
+// #include <stdio.h>
+// int main(void)
+// {
+// 	char *str = " <>   split    'this' by  space!  <>  ";
+// 	// char *str = "hi";
+// 	// char *str = "";
+// 	char **res_arr = ft_split(str, ' ');
+// 	if (res_arr == NULL)
+// 	{
+// 		printf("ft_split() returned NULL\n");
+// 		return (1);
+// 	}
 
-	for (int i = 0; res_arr[i]; i++)
-		free(res_arr[i]);
-	free(res_arr);
-	return (0);
-}
-*/
+// 	printf("str: %s\n", str);
+// 	int i = 0;
+// 	while (res_arr[i])
+// 	{
+// 		printf("res_arr[%d] %s\n", i, res_arr[i]);
+// 		if (res_arr[++i] == NULL)
+// 			printf("res_arr[%d] NULL\n", i);
+// 	}
+
+// 	for (int i = 0; res_arr[i]; i++)
+// 		free(res_arr[i]);
+// 	free(res_arr);
+// 	return (0);
+// }
