@@ -51,8 +51,8 @@ int get_substr_len(char const *str, char c, int i)
 // free 'arr' array and return 0
 int free_arr(char **arr, int str_index)
 {
-	while (str_index >= 0)
-		free(arr[str_index--]);
+	while (str_index > 0)
+		free(arr[--str_index]);
 	free(arr);
 	return (0);
 }
