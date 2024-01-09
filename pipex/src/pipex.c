@@ -1,7 +1,7 @@
 #include "../include/pipex.h"
 
 // check if arguments are valid
-static void	check_args(int argc, char *argv[], char *envp[])
+static void	check_args(int argc, char *envp[])
 {
 	if (argc != 5)
 		error("Usage: ./pipex infile \"cmd1\" \"cmd2\" outfile\n");
@@ -10,7 +10,7 @@ static void	check_args(int argc, char *argv[], char *envp[])
 }
 
 // execute the first command and write the output to the pipe
-void	exec_cmd1(char *argv[], int *fd_pipe, char *envp[])
+static void	exec_cmd1(char *argv[], int *fd_pipe, char *envp[])
 {
 	int	fd_in;
 
@@ -29,7 +29,7 @@ void	exec_cmd1(char *argv[], int *fd_pipe, char *envp[])
 // wait for the child process to finish
 // read the result of the first command from the pipe
 // execute the second command and write the output to the outfile
-void	exec_cmd2(char *argv[], int *fd_pipe, char *envp[])
+static void	exec_cmd2(char *argv[], int *fd_pipe, char *envp[])
 {
 	int	fd_out;
 
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[], char *envp[])
 	int		fd_pipe[2];
 	pid_t	pid;
 
-	check_args(argc, argv, envp);
+	check_args(argc, envp);
 	if (pipe(fd_pipe) == -1)
 		error("create pipe failed\n");
 	pid = fork();

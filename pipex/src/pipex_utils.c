@@ -8,7 +8,7 @@ void	error(const char *message)
 }
 
 // loop through arr and free each string, then free arr
-void	free_arr_of_strs(char **arr)
+static void	free_arr_of_strs(char **arr)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ void	free_arr_of_strs(char **arr)
 // part of get_path()
 // loop through paths and find the valid path of cmd
 // return the valid path, or NULL if valid path is not found
-char	*get_valid_path(char **paths, char *cmd)
+static char	*get_valid_path(char **paths, char *cmd)
 {
 	int		i;
 	char	*temp_path;
@@ -56,7 +56,7 @@ char	*get_valid_path(char **paths, char *cmd)
 // 1. find the PATH variable in envp
 // 2. split the PATH variable into an array of strings
 // 3. find the valid path of the command
-char	*get_path(char *cmd, char *envp[])
+static char	*get_path(char *cmd, char *envp[])
 {
 	int		i;
 	char	**paths;
