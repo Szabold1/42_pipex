@@ -1,4 +1,4 @@
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 // print error message with perror() and exit
 void	error(char *message)

@@ -3,13 +3,6 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
-
-# Directories
-SRC_DIR = ./src
-SRC_BONUS_DIR = $(SRC_DIR)/bonus
-SRC_PRINTF_DIR = $(SRC_DIR)/ft_printf
-SRC_GNL_DIR = $(SRC_DIR)/get_next_line
-
 SRC = ft_atoi.c \
 		ft_bzero.c \
 		ft_calloc.c \
@@ -44,7 +37,7 @@ SRC = ft_atoi.c \
 		ft_substr.c \
 		ft_tolower.c \
 		ft_toupper.c
-OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
+OBJ = $(SRC:.c=.o)
 SRC_BONUS = ft_lstadd_back.c \
 			ft_lstadd_front.c \
 			ft_lstclear.c \
@@ -54,37 +47,25 @@ SRC_BONUS = ft_lstadd_back.c \
 			ft_lstmap.c \
 			ft_lstnew.c \
 			ft_lstsize.c
-OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_BONUS_DIR)/%.o)
-SRC_PRINTF = ft_printf_utils.c \
-			ft_printf_utils2.c \
-			ft_printf.c
-OBJ_PRINTF = $(SRC_PRINTF:%.c=$(SRC_PRINTF_DIR)/%.o)
-SRC_GNL = get_next_line_utils.c \
-			get_next_line.c
-OBJ_GNL = $(SRC_GNL:%.c=$(SRC_GNL_DIR)/%.o)
-
-OBJ_FULL = $(OBJ) $(OBJ_BONUS) $(OBJ_PRINTF) $(OBJ_GNL)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+%.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ_FULL)
+	$(RM) $(OBJ) $(OBJ_BONUS)
 
 fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
 
-bonus: $(OBJ) $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ) $(OBJ_BONUS)
-
-full: $(OBJ_FULL)
-	$(AR) $(NAME) $(OBJ_FULL)
+bonus: all $(OBJ_BONUS)
+	$(AR) $(NAME) $(OBJ_BONUS)
 	
-.PHONY: all clean fclean re bonus full
+.PHONY: all clean fclean re bonus
