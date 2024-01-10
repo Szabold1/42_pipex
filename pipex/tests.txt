@@ -21,3 +21,15 @@ valgrind ./pipex infile "nonexistent_command" "wc -l" outfile
 ---------------  Test 6 - Error ---------------
 ./pipex infile "ls" "wc -l -invalid-option" outfile
 < infile ls | wc -l -invalid-option > outfile
+
+
+----------------------------------------  Bonus
+---------------  Test 1  ---------------
+./pipex infile "grep 1" "sort" "uniq" outfile
+< infile grep 1 | sort | uniq > outfile
+
+---------------  Test 2  ---------------
+./pipex infile "cat" "grep 3" "wc -l" outfile
+< infile cat | grep 3 | wc -l > outfile
+
+
