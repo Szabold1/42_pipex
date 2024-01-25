@@ -1,4 +1,4 @@
-#include "pipex_bonus.h"
+#include "../include/pipex.h"
 
 // check if arguments are valid
 static void	check_args(int argc, char *envp[])

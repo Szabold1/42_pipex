@@ -6,11 +6,11 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/wait.h>
-# include "../libft/libft.h"
-
+# include <stdbool.h>
+# include "../libft/include/libft.h"
 
 // FILE: pipex_utils.c
-void	error(char *message);
+void	*error(char *message, bool exit_program);
 void	execute(char *cmd, char *envp[]);
 
 #endif
