@@ -89,8 +89,6 @@ char	*handle_rest(char *str);
 char	*get_next_line(int fd);
 
 // ft_printf functions
-// File: ft_printf.c
-int		ft_printf(const char *str, ...);
 // File: ft_printf_utils.c
 int		print_char(int c);
 int		print_str(char *str);
@@ -99,5 +97,19 @@ int		print_uint(unsigned int n);
 // File: ft_printf_utils2.c
 int		print_hex(unsigned long long n, char c);
 int		print_ptr(void *ptr);
+// File: ft_printf.c
+int		ft_printf(const char *str, ...);
+
+// ft_printf_fd functions
+// File: ft_printf_fd_utils.c
+int		print_char_fd(int c, int fd);
+int		print_str_fd(char *str, int fd);
+int		print_int_fd(int n, int fd);
+int		print_uint_fd(unsigned int n, int fd);
+// File: ft_printf_fd_utils2.c
+int		print_hex_fd(unsigned long long n, char c, int fd);
+int		print_ptr_fd(void *ptr, int fd);
+// File: ft_printf_fd.c
+int		ft_printf_fd(int fd, const char *str, ...);
 
 #endif

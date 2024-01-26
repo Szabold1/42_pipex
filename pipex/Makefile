@@ -11,16 +11,23 @@ NAME_BONUS = $(NAME)_bonus
 # File and Directory Management
 RM = rm -f
 LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
-LIBS = -L$(LIBFT_DIR) -lft
+LIBFT = $(LIBFT_DIR)/libft_full.a
+LIBS = -L$(LIBFT_DIR) -lft_full
 
 # Source Directories
 SRC_DIR = src
 
 # Source Files
-SRC = pipex_utils.c \
-      pipex.c
-SRC_BONUS = pipex_utils.c \
+SRC = execute.c \
+		errors.c \
+		path.c \
+		pipex_utils.c \
+		pipex.c
+
+SRC_BONUS = execute.c \
+			errors.c \
+			path.c \
+			pipex_utils.c \
 			pipex_bonus.c
 
 # Object Files
@@ -40,7 +47,7 @@ $(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
 
 # Library Compilation
 $(LIBFT): $(LIBFT_DIR)
-	cd $(LIBFT_DIR) && $(MAKE) every
+	cd $(LIBFT_DIR) && $(MAKE) full
 
 # Phony Targets
 all: $(NAME)

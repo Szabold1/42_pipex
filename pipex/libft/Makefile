@@ -1,11 +1,16 @@
+# Makefile for libft
+
 # Library name
 NAME = libft.a
+NAME_BONUS = libft_bonus.a
+NAME_FULL = libft_full.a
 
 # Source directories
 SRC_DIR = ./src
 SRC_BONUS_DIR = $(SRC_DIR)/bonus
 SRC_GNL_DIR = $(SRC_DIR)/get_next_line
 SRC_PRINTF_DIR = $(SRC_DIR)/ft_printf
+SRC_PRINTF_FD_DIR = $(SRC_DIR)/ft_printf_fd
 
 # Compiler and flags
 CC = cc
@@ -70,41 +75,46 @@ SRC_PRINTF = ft_printf_utils.c \
             ft_printf_utils2.c \
             ft_printf.c
 
+SRC_PRINTF_FD = ft_printf_fd_utils.c \
+                ft_printf_fd_utils2.c \
+                ft_printf_fd.c
+
 # Object files
 OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
 OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_BONUS_DIR)/%.o)
 OBJ_GNL = $(SRC_GNL:%.c=$(SRC_GNL_DIR)/%.o)
 OBJ_PRINTF = $(SRC_PRINTF:%.c=$(SRC_PRINTF_DIR)/%.o)
-
-# Default target
-all: $(NAME)
+OBJ_PRINTF_FD = $(SRC_PRINTF_FD:%.c=$(SRC_PRINTF_FD_DIR)/%.o)
+OBJ_FULL = $(OBJ) $(OBJ_BONUS) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_PRINTF_FD)
 
 # Build library
 $(NAME): $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
+$(NAME_BONUS): $(OBJ_BONUS)
+	$(AR) $(NAME_BONUS) $(OBJ_BONUS)
+
+$(NAME_FULL): $(OBJ_FULL)
+	$(AR) $(NAME_FULL) $(OBJ_FULL)
+
 # Compile individual source files
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Clean up object files
+# Phony Targets
+all: $(NAME)
+
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS) $(OBJ_GNL) $(OBJ_PRINTF)
+	$(RM) $(OBJ_FULL)
 
-# Remove all generated files
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(NAME_BONUS) $(NAME_FULL)
 
-# Clean and build again
 re: fclean all
 
-# Build bonus part of the library
-bonus: all $(OBJ_BONUS)
-	$(AR) $(NAME) $(OBJ_BONUS)
+bonus: $(NAME_BONUS)
 
-# Build everything (bonus, get_next_line, ft_printf)
-every: bonus $(OBJ_GNL) $(OBJ_PRINTF)
-	$(AR) $(NAME) $(OBJ_BONUS) $(OBJ_GNL) $(OBJ_PRINTF)
+# (bonus, get_next_line, ft_printf, ft_printf_fd)
+full: $(NAME_FULL)
 
-# Declare phony targets
-.PHONY: all clean fclean re bonus every
+.PHONY: all clean fclean re bonus full
