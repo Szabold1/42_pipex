@@ -16,26 +16,32 @@ LIBS = -L$(LIBFT_DIR) -lft_full
 
 # Source Directories
 SRC_DIR = src
+SRC_BONUS_DIR = src_bonus
 
 # Source Files
-SRC = execute.c \
-		errors.c \
+SRC = errors.c \
+		execute.c \
+		file.c \
 		path.c \
 		pipex_utils.c \
 		pipex.c
 
-SRC_BONUS = execute.c \
-			errors.c \
-			path.c \
-			pipex_utils.c \
-			pipex_bonus.c
+SRC_BONUS = errors_bonus.c \
+			execute_bonus.c \
+			file_bonus.c \
+			path_bonus.c \
+			pipex_bonus.c \
+			pipex_utils_bonus.c
 
 # Object Files
 OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
-OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_DIR)/%.o)
+OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_BONUS_DIR)/%.o)
 
 # Compilation Rules
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(SRC_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 # Target Rules

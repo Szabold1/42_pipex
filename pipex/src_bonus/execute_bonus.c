@@ -1,4 +1,4 @@
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 // execute the command 'cmd'
 // 1. split 'cmd' into an array of strings
@@ -11,46 +11,39 @@ int	execute(char *cmd)
 
 	cmd_array = ft_split(cmd, ' ');
 	if (cmd_array == NULL)
-	{
-		ft_printf_fd(2, "pipex: %s\n", strerror(errno));
-		return (-1);
-	}
+		exit_err("cmd_array is NULL (f: execute)", EXIT_FAILURE);
 	path = get_path(cmd_array[0]);
 	if (!path)
 	{
 		free_arr_of_strs(cmd_array);
-		return (0);
+		return (EXIT_SUCCESS);
 	}
 	if (execve(path, cmd_array, environ) == -1)
-	{
-		ft_printf_fd(2, "pipex: %s\n", strerror(errno));
-		free_arr_of_strs(cmd_array);
-		free(path);
-		return (-1);
-	}
-	return (-1);
+		exit_err(NULL, EXIT_FAILURE);
+	free_arr_of_strs(cmd_array);
+	return (EXIT_FAILURE);
 }
 
 // set write end of pipe to stdout and execute the command 'cmd'
-static int	exec_cmd_child(int fd_pipe[2], char *cmd)
+static void	exec_cmd_child(int fd_pipe[2], char *cmd)
 {
 	close(fd_pipe[0]);
 	if (dup2(fd_pipe[1], STDOUT_FILENO) == -1)
 	{
 		close(fd_pipe[1]);
-		return (-1);		
+		exit_err(NULL, EXIT_FAILURE);
 	}
-	if (execute(cmd) == -1)
+	if (execute(cmd) != EXIT_SUCCESS)
 	{
 		close(fd_pipe[1]);
-		return (-1);
+		exit_err(NULL, EXIT_FAILURE);
 	}
 	close(fd_pipe[1]);
-	return (0);
+	exit(EXIT_SUCCESS);
 }
 
 // set read end of pipe to stdin, so that the next command can read from it
-static int	exec_cmd_parent(int fd_pipe[2], pid_t pid)
+static void	exec_cmd_parent(int fd_pipe[2], pid_t pid)
 {
 	int	status;
 
@@ -58,35 +51,33 @@ static int	exec_cmd_parent(int fd_pipe[2], pid_t pid)
 	if (WIFEXITED(status) && WEXITSTATUS(status) != EXIT_SUCCESS)
 	{
 		close_pipe(fd_pipe);
-		return (WEXITSTATUS(status));
+		exit(WEXITSTATUS(status));
 	}
 	close(fd_pipe[1]);
 	if (dup2(fd_pipe[0], STDIN_FILENO) == -1)
 	{
 		close(fd_pipe[0]);
-		return (-1);
+		exit_err(NULL, EXIT_FAILURE);
 	}
-	close(fd_pipe[0]);
-	return (0);
 }
 
 // create a child process to execute the command 'cmd'
 // parent process sets the pipe for next command
-int	exec_cmd(char *cmd)
+void	exec_cmd(char *cmd)
 {
     int		fd_pipe[2];
     pid_t	pid;
 
     if (pipe(fd_pipe) == -1)
-		return (-1);
+		exit_err(NULL, EXIT_FAILURE);
 	pid = fork();
 	if (pid == -1)
 	{
 		close_pipe(fd_pipe);
-		return (-1);
+		exit_err(NULL, EXIT_FAILURE);
 	}
 	else if (pid == 0)
-		return (exec_cmd_child(fd_pipe, cmd));
+		exec_cmd_child(fd_pipe, cmd);
 	else
-		return (exec_cmd_parent(fd_pipe, pid));
+		exec_cmd_parent(fd_pipe, pid);
 }

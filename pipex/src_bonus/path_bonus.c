@@ -1,4 +1,4 @@
-#include "../include/pipex.h"
+#include "../include/pipex_bonus.h"
 
 // check if the given 'cmd' is an absolute path
 static char *check_abs_path(char *cmd)
