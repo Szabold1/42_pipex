@@ -77,6 +77,9 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
+// Other libft functions
+int		ft_strcmp(char *s1, char *s2);
+
 // get_next_line functions
 // File: get_next_line_utils.c
 char	*ft_strchr(const char *str, int c);
