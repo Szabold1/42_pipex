@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../include/libft.h"
+
 // check if string 'str' contains char 'c'
 // return pointer to first occurrence of 'c' in 'str', or NULL if not found
 char	*ft_strchr(const char *str, int c)
@@ -17,6 +19,8 @@ char	*ft_strchr(const char *str, int c)
 	unsigned char	c_c;
 
 	c_c = (unsigned char)c;
+	if (!str)
+		return (NULL);
 	while (*str)
 	{
 		if (c_c == *str)

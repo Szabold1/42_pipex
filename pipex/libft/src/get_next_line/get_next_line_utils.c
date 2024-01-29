@@ -12,40 +12,6 @@
 
 #include "../../include/libft.h"
 
-// look for character 'c' in string 'str'
-// if found, return pointer to character
-// if not found, return NULL
-char	*ft_strchr(const char *str, int c)
-{
-	unsigned char	c_c;
-
-	if (!str)
-		return (NULL);
-	c_c = (unsigned char)c;
-	while (*str)
-	{
-		if (c_c == *str)
-			return ((char *)str);
-		str++;
-	}
-	if (c_c == '\0')
-		return ((char *)str);
-	return (0);
-}
-
-// return length of string 'str'
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
 // concatenate s1 and s2 into s_final
 static char	*concat_strs(char *s1, char *s2, char *s_final)
 {
