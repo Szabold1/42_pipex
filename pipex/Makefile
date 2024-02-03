@@ -26,12 +26,14 @@ SRC = errors.c \
 		pipex_utils.c \
 		pipex.c
 
-SRC_BONUS = errors_bonus.c \
-			execute_bonus.c \
-			file_bonus.c \
-			path_bonus.c \
-			pipex_bonus.c \
-			pipex_utils_bonus.c
+SRC_BONUS = clean_up.c \
+			errors.c \
+			execute.c \
+			init_data.c \
+			main.c \
+			set_data_cmds.c \
+			set_data_files.c \
+			set_data.c
 
 # Object Files
 OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
