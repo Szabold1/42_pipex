@@ -20,32 +20,32 @@
 ./pipex noFile "ls -l" "sooort -k7" outfile
 
 6. -------------------  invalid cmd1  ------------------------|
-< infile lsss -l | sort -k7 > outfile
-./pipex infile "lsss -l" "sort -k7" outfile
+< Makefile lsss -l | sort -k7 > outfile
+./pipex Makefile "lsss -l" "sort -k7" outfile
 
 7. -------------------  invalid last cmd  --------------------|
-< infile ls -l | sooort -k7 > outfile
-./pipex infile "ls -l" "sooort -k7" outfile
+< Makefile ls -l | sooort -k7 > outfile
+./pipex Makefile "ls -l" "sooort -k7" outfile
 
 8. -------------------  invalid cmd1, invalid last cmd  ------|
-< infile lsss -l | sooort -k7 > outfile
-./pipex infile "lsss -l" "sooort -k7" outfile
+< Makefile lsss -l | sooort -k7 > outfile
+./pipex Makefile "lsss -l" "sooort -k7" outfile
 
 9. -------------------  no outfile  --------------------------|
-< infile ls -l | sort -k7 > newOutfile1
-./pipex infile "ls -l" "sort -k7" newOutfile2
+< Makefile ls -l | sort -k7 > newOutfile1
+./pipex Makefile "ls -l" "sort -k7" newOutfile2
 
 10. ------------------  empty env  ---------------------------|
-env -i ./pipex infile "ls -l" "sort -k7" outfile
+env -i ./pipex Makefile "ls -l" "sort -k7" outfile
 
 11. ------------------  full path to cmd  --------------------|
-< infile /bin/ls -l | sort -k7 > outfile
-./pipex infile "/bin/ls -l" "sort -k7" outfile
+< Makefile /bin/ls -l | sort -k7 > outfile
+./pipex Makefile "/bin/ls -l" "sort -k7" outfile
 
 12. ------------------  no PATH  -----------------------------|
 unset PATH
-< infile ls -l | sort -k7 > outfile
-./pipex infile "ls -l" "sort -k7" outfile
+< Makefile ls -l | sort -k7 > outfile
+./pipex Makefile "ls -l" "sort -k7" outfile
 
 --------------------------------------------------------------|
 ----------------------  Bonus  -------------------------------|
@@ -66,7 +66,7 @@ ls -l << LIMITER | grep s | sort -k8 | cat >> outfile
 ./pipex_bonus Makefile "sort" "grep c" "ls -la" "grep s" "sort" outfile
 < Makefile sort | grep c | ls -la | grep s | sort > outfile
 
-5. -------------------  invalid pipes  -----------------------|
+5. -------------------  invalid commands  -----------------------|
 5.1  ./pipex_bonus noInfile "sooort" "lsss -l" "grep k" "cat" outfile
 5.1  < noInfile sooort | lsss -l | grep k | cat > outfile
 5.2  ./pipex_bonus Makefile "grep 5"  "ls -l" "grep s" "soort" outfile
