@@ -90,26 +90,26 @@ OBJ_FULL = $(OBJ) $(OBJ_BONUS) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_PRINTF_FD)
 
 # Build library
 $(NAME): $(OBJ)
-	$(AR) $(NAME) $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
 
 $(NAME_BONUS): $(OBJ_BONUS)
-	$(AR) $(NAME_BONUS) $(OBJ_BONUS)
+	@$(AR) $(NAME_BONUS) $(OBJ_BONUS)
 
 $(NAME_FULL): $(OBJ_FULL)
-	$(AR) $(NAME_FULL) $(OBJ_FULL)
+	@$(AR) $(NAME_FULL) $(OBJ_FULL)
 
 # Compile individual source files
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Phony Targets
 all: $(NAME)
 
 clean:
-	$(RM) $(OBJ_FULL)
+	@$(RM) $(OBJ_FULL)
 
 fclean: clean
-	$(RM) $(NAME) $(NAME_BONUS) $(NAME_FULL)
+	@$(RM) $(NAME) $(NAME_BONUS) $(NAME_FULL)
 
 re: fclean all
 

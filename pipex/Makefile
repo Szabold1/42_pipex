@@ -41,32 +41,39 @@ OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_BONUS_DIR)/%.o)
 
 # Compilation Rules
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(SRC_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Target Rules
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBS) -o $(NAME)
+	@$(CC) $(OBJ) $(LIBS) -o $(NAME)
+	@echo "✅ Pipex compiled successfully!"
 
 $(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
-	$(CC) $(OBJ_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@$(CC) $(OBJ_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@echo "✅ Pipex Bonus compiled successfully!"
 
 # Library Compilation
 $(LIBFT): $(LIBFT_DIR)
-	cd $(LIBFT_DIR) && $(MAKE) full
+	@cd $(LIBFT_DIR) && $(MAKE) full
+	@echo "✅ Libft compiled successfully!"
 
 # Phony Targets
 all: $(NAME)
 
 clean:
-	cd $(LIBFT_DIR) && $(MAKE) clean
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	@cd $(LIBFT_DIR) && $(MAKE) clean
+	@echo "✅ Libft clean completed."
+	@$(RM) $(OBJ) $(OBJ_BONUS)
+	@echo "✅ Pipex clean completed."
 
 fclean: clean
-	cd $(LIBFT_DIR) && $(MAKE) fclean
-	$(RM) $(NAME) $(NAME_BONUS)
+	@cd $(LIBFT_DIR) && $(MAKE) fclean
+	@echo "✅ Libft fclean completed."
+	@$(RM) $(NAME) $(NAME_BONUS)
+	@echo "✅ Pipex fclean completed."
 
 re: fclean all
 
