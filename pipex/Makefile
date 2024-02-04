@@ -19,21 +19,23 @@ SRC_DIR = src
 SRC_BONUS_DIR = src_bonus
 
 # Source Files
-SRC = errors.c \
-		execute.c \
-		file.c \
-		path.c \
-		pipex_utils.c \
-		pipex.c
+SRC = clean_up.c \
+	  errors.c \
+	  execute.c \
+	  init_data.c \
+	  main.c \
+	  set_data_cmds.c \
+	  set_data_files.c \
+	  set_data.c
 
-SRC_BONUS = clean_up.c \
-			errors.c \
-			execute.c \
-			init_data.c \
-			main.c \
-			set_data_cmds.c \
-			set_data_files.c \
-			set_data.c
+SRC_BONUS = b_clean_up.c \
+			b_errors.c \
+			b_execute.c \
+			b_init_data.c \
+			b_main.c \
+			b_set_data_cmds.c \
+			b_set_data_files.c \
+			b_set_data.c
 
 # Object Files
 OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
@@ -48,32 +50,33 @@ $(SRC_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
 
 # Target Rules
 $(NAME): $(LIBFT) $(OBJ)
+	@echo "🔨 compiling $(NAME)"
 	@$(CC) $(OBJ) $(LIBS) -o $(NAME)
-	@echo "✅ Pipex compiled successfully!"
+	@echo "✅ $(NAME) compiled"
 
 $(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
+	@echo "🔨 compiling $(NAME_BONUS)"
 	@$(CC) $(OBJ_BONUS) $(LIBS) -o $(NAME_BONUS)
-	@echo "✅ Pipex Bonus compiled successfully!"
+	@echo "✅ $(NAME_BONUS) compiled"
 
 # Library Compilation
 $(LIBFT): $(LIBFT_DIR)
+	@echo "🔨 compiling libft"
 	@cd $(LIBFT_DIR) && $(MAKE) full
-	@echo "✅ Libft compiled successfully!"
+	@echo "✅ libft compiled"
 
 # Phony Targets
 all: $(NAME)
 
 clean:
 	@cd $(LIBFT_DIR) && $(MAKE) clean
-	@echo "✅ Libft clean completed."
 	@$(RM) $(OBJ) $(OBJ_BONUS)
-	@echo "✅ Pipex clean completed."
+	@echo "✅ object files removed"
 
 fclean: clean
 	@cd $(LIBFT_DIR) && $(MAKE) fclean
-	@echo "✅ Libft fclean completed."
 	@$(RM) $(NAME) $(NAME_BONUS)
-	@echo "✅ Pipex fclean completed."
+	@echo "✅ executables removed"
 
 re: fclean all
 
