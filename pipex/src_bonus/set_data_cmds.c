@@ -1,7 +1,7 @@
 #include "../include/pipex_bonus.h"
 
 // check if the cmd is an absolute path
-// if yes, return 0, if not, return -1
+// if yes, set path and return 0, if not, return -1
 static int	check_abs_path(t_cmd *cmd_d)
 {
 	char	*cmd;
@@ -17,7 +17,7 @@ static int	check_abs_path(t_cmd *cmd_d)
 	return (-1);
 }
 
-// join path with command
+// join path with command and return the result (using malloc)
 static char	*join_cmd_path(char *path, char *cmd)
 {
 	char	*temp_path;
@@ -35,8 +35,7 @@ static char	*join_cmd_path(char *path, char *cmd)
 }
 
 // set valid path for a single command
-// if valid path is found, set cmd_d->path and return 0
-// if not found set cmd_d->path to NULL and return -1
+// if valid path is found, set cmd_d->path and return 0, if not, return -1
 static int set_cmd_path(t_data *data, t_cmd *cmd_d)
 {
 	int		i;
@@ -63,6 +62,9 @@ static int set_cmd_path(t_data *data, t_cmd *cmd_d)
 	return (-1);
 }
 
+// set paths_arr with PATH environment variable
+// if PATH is not found or env is empty, set paths_arr to NULL
+// if successful, return 0, otherwise return -1
 int	set_paths_arr(t_data *data)
 {
 	int		i;
@@ -70,7 +72,14 @@ int	set_paths_arr(t_data *data)
 	i = 0;
 	while (environ[i] && ft_strncmp("PATH=", environ[i], 5) != 0)
 		i++;
-	if (environ[i] != NULL)
+	if (environ[i] == NULL)
+	{
+		data->paths_arr = (char **)malloc(sizeof(char *));
+		if (data->paths_arr == NULL)
+			return (err_msg("paths_arr malloc failed"), -1);
+		data->paths_arr[0] = NULL;
+	}
+	else
 	{
 		data->paths_arr = ft_split(environ[i] + 5, ':');
 		if (data->paths_arr == NULL)
@@ -96,7 +105,10 @@ int	set_cmds(t_data *data)
 		if (data->cmds[i]->cmd_arr == NULL)
 			return (err_msg("cmd_arr split failed"), -1);
 		if (check_abs_path(data->cmds[i]) == 0)
-			return (0);
+		{
+			i++;
+			continue ;
+		}
 		if (set_cmd_path(data, data->cmds[i]) == -1)
 			err_cmd(data->cmds[i]->cmd_arr[0]);
 		i++;

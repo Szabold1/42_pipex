@@ -16,17 +16,26 @@ static void	set_std_in_out(int std_in, int std_out, t_data *data)
 // if it fails, return -1, otherwise it won't return because of execve
 static void	exec_cmd(t_data *data, int i)
 {
-	if (i == 0 || (i == 1 && data->skip_first_cmd == true))
+	if (data->skip_first_cmd)
 	{
 		if (i == 1 && data->nb_cmds == 2)
 			set_std_in_out(data->in_fd, data->out_fd, data);
+		else if (i == 1)
+			set_std_in_out(data->in_fd, data->pipes[i][1], data);
+		else if (i == data->nb_cmds - 1)
+			set_std_in_out(data->pipes[i - 1][0], data->out_fd, data);
 		else
-			set_std_in_out(data->in_fd, data->pipes[0][1], data);
+			set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
 	}
-	else if (i == data->nb_cmds - 1)
-		set_std_in_out(data->pipes[i - 1][0], data->out_fd, data);
 	else
-		set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
+	{
+		if (i == 0)
+			set_std_in_out(data->in_fd, data->pipes[i][1], data);
+		else if (i == data->nb_cmds - 1)
+			set_std_in_out(data->pipes[i - 1][0], data->out_fd, data);
+		else
+			set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
+	}
 	close_fds(data);
 	execve(data->cmds[i]->path, data->cmds[i]->cmd_arr, environ);
 	exit(EXIT_FAILURE);
@@ -57,7 +66,7 @@ int	exec_cmds(t_data *data)
 	{
 		pid = fork();
 		if (pid == -1)
-			return (close_fds(data), err_msg("fork failed"), -1);
+			return (err_msg("fork failed"), -1);
 		else if (pid == 0)
 			exec_cmd(data, i);
 		else

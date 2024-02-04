@@ -33,7 +33,6 @@ typedef struct s_data
 	int		in_fd;
 	int		out_fd;
 	bool	skip_first_cmd;
-	int		exit_code;
 	int		nb_cmds;
 	char	**argv_cmd;
 	char	**paths_arr;

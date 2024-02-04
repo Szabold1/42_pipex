@@ -69,7 +69,7 @@ int	set_infile(t_data *data)
 	return (0);
 }
 
-// if outfile is .here_doc, open it in write, create, append mode
+// if infile is .here_doc, open outfile in write, create, append mode
 // otherwise open it in write, create, truncate mode
 // return 0 if successful, otherwise return -1
 int	set_outfile(t_data *data)
