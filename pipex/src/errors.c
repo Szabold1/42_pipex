@@ -1,31 +1,22 @@
 #include "../include/pipex.h"
 
-// print error message to stderr and exit with exit_code
-// if msg is NULL, print error message based on errno
-void	exit_err(char *msg, int exit_code)
+void	err_msg(char *msg)
 {
+	ft_printf_fd(STDERR_FILENO, "pipex: ");
 	if (msg && errno)
-		ft_printf_fd(2, "pipex: %s: %s\n", msg, strerror(errno));
+		perror(msg);
 	else if (msg)
-		ft_printf_fd(2, "pipex: %s\n", msg);
+		ft_printf_fd(STDERR_FILENO, "%s\n", msg);
 	else if (errno)
-		ft_printf_fd(2, "pipex: %s\n", strerror(errno));
+		perror(NULL);
 	else
-		ft_printf_fd(2, "pipex: error\n");
-	exit(exit_code);
+		ft_printf_fd(STDERR_FILENO, "error\n");
 }
 
-// print error message to stderr and return NULL
-// if msg is NULL, print error message based on errno
-char	*error(char *msg)
+void	err_cmd(char *cmd)
 {
-	if (msg && errno)
-		ft_printf_fd(2, "pipex: %s: %s\n", msg, strerror(errno));
-	else if (msg)
-		ft_printf_fd(2, "pipex: %s\n", msg);
-	else if (errno)
-		ft_printf_fd(2, "pipex: %s\n", strerror(errno));
+	if (cmd)
+		ft_printf_fd(STDERR_FILENO, "pipex: %s: command not found\n", cmd);
 	else
-		ft_printf_fd(2, "pipex: error\n");
-	return (NULL);
+		ft_printf_fd(STDERR_FILENO, "pipex: error\n");
 }
