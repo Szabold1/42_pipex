@@ -12,21 +12,26 @@ static void	set_std_in_out(int std_in, int std_out, t_data *data)
 	}
 }
 
+// handle the case where infile is invalid,
+// and the first command should be skipped
+void	handle_skip_first_cmd(t_data *data, int i)
+{
+	if (i == 1 && data->nb_cmds == 2)
+			set_std_in_out(data->in_fd, data->out_fd, data);
+	else if (i == 1)
+		set_std_in_out(data->in_fd, data->pipes[i][1], data);
+	else if (i == data->nb_cmds - 1)
+		set_std_in_out(data->pipes[i - 1][0], data->out_fd, data);
+	else
+		set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
+}
+
 // execute a single command
 // if it fails, return -1, otherwise it won't return because of execve
 static void	exec_cmd(t_data *data, int i)
 {
 	if (data->skip_first_cmd)
-	{
-		if (i == 1 && data->nb_cmds == 2)
-			set_std_in_out(data->in_fd, data->out_fd, data);
-		else if (i == 1)
-			set_std_in_out(data->in_fd, data->pipes[i][1], data);
-		else if (i == data->nb_cmds - 1)
-			set_std_in_out(data->pipes[i - 1][0], data->out_fd, data);
-		else
-			set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
-	}
+		handle_skip_first_cmd(data, i);
 	else
 	{
 		if (i == 0)
@@ -37,7 +42,9 @@ static void	exec_cmd(t_data *data, int i)
 			set_std_in_out(data->pipes[i - 1][0], data->pipes[i][1], data);
 	}
 	close_fds(data);
-	execve(data->cmds[i]->path, data->cmds[i]->cmd_arr, environ);
+	if (data->cmds[i]->path != NULL)
+		execve(data->cmds[i]->path, data->cmds[i]->cmd_arr, environ);
+	clean_up(data);
 	exit(EXIT_FAILURE);
 }
 
