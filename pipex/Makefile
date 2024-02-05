@@ -75,6 +75,7 @@ clean:
 
 fclean: clean
 	@cd $(LIBFT_DIR) && $(MAKE) fclean
+	@echo "✅ libft library removed"
 	@$(RM) $(NAME) $(NAME_BONUS)
 	@echo "✅ executables removed"
 
