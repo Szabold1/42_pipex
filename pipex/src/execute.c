@@ -17,7 +17,7 @@ static void	set_std_in_out(int std_in, int std_out, t_data *data)
 void	handle_skip_first_cmd(t_data *data, int i)
 {
 	if (i == 1 && data->nb_cmds == 2)
-			set_std_in_out(data->in_fd, data->out_fd, data);
+		set_std_in_out(data->in_fd, data->out_fd, data);
 	else if (i == 1)
 		set_std_in_out(data->in_fd, data->pipes[i][1], data);
 	else if (i == data->nb_cmds - 1)

@@ -35,7 +35,7 @@ static int	count_substrs(char const *str, char c)
 }
 
 // count number of characters in substring starting at index 'i'
-int get_substr_len(char const *str, char c, int i)
+int	get_substr_len(char const *str, char c, int i)
 {
 	int	count;
 
@@ -49,7 +49,7 @@ int get_substr_len(char const *str, char c, int i)
 }
 
 // free 'arr' array and return 0
-int free_arr(char **arr, int str_index)
+int	free_arr(char **arr, int str_index)
 {
 	while (str_index > 0)
 		free(arr[--str_index]);

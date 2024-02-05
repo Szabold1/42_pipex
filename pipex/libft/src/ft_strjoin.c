@@ -35,7 +35,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (check_strs(s1, s2) == -1)
 		return (NULL);
 	s_final = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1)
-		* sizeof(char));
+			* sizeof(char));
 	if (s_final == NULL)
 		return (NULL);
 	while (s1[++i])

@@ -13,7 +13,7 @@ static int	check_args(int argc, char *argv[])
 
 int	main(int argc, char *argv[])
 {
-    t_data	*data;
+	t_data	*data;
 
 	data = (t_data *)malloc(sizeof(t_data));
 	if (data == NULL)

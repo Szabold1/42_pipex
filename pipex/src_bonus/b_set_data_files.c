@@ -12,8 +12,8 @@ static int	open_file(char *filename, int flag)
 		fd = open(filename, O_RDONLY, 0777);
 	else if (flag == 1)
 		fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0777);
-    else if (flag == 2)
-        fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
+	else if (flag == 2)
+		fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0777);
 	else
 		fd = -1;
 	return (fd);

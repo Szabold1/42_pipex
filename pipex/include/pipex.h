@@ -1,11 +1,6 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# define ERR_ARGS_1 "Error: wrong number of arguments\n \
-      Usage:	./pipex infile cmd1 cmd2 outfile"
-
-extern char **environ;
-
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -15,6 +10,11 @@ extern char **environ;
 # include <string.h>
 # include <stdbool.h>
 # include "../libft/include/libft.h"
+
+# define ERR_ARGS_1 "Error: wrong number of arguments\n \
+      Usage:	./pipex infile cmd1 cmd2 outfile"
+
+extern char	**environ;
 
 // structure for data related to a single command
 typedef struct s_cmd

@@ -36,7 +36,7 @@ static char	*join_cmd_path(char *path, char *cmd)
 
 // set valid path for a single command
 // if valid path is found, set cmd_d->path and return 0, if not, return -1
-static int set_cmd_path(t_data *data, t_cmd *cmd_d)
+static int	set_cmd_path(t_data *data, t_cmd *cmd_d)
 {
 	int		i;
 	char	*temp_path;

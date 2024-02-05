@@ -93,6 +93,6 @@ void	clean_up(t_data *data)
 			free(data->pids_child);
 			data->pids_child = NULL;
 		}
-    	free(data);
+		free(data);
 	}
 }
