@@ -75,8 +75,10 @@ void	close_fds(t_data *data)
 		close(data->pipes[i][1]);
 		i++;
 	}
-	close(data->in_fd);
-	close(data->out_fd);
+	if (data->in_fd != -1)
+		close(data->in_fd);
+	if (data->out_fd != -1)
+		close(data->out_fd);
 }
 
 void	clean_up(t_data *data)
