@@ -47,7 +47,7 @@ void	free_cmds(t_data *data)
 	data->cmds = NULL;
 }
 
-void	close_free_pipes(t_data *data)
+void	free_pipes(t_data *data)
 {
 	int	i;
 
@@ -85,9 +85,15 @@ void	clean_up(t_data *data)
 	{
 		close_fds(data);
 		if (data->cmds)
+		{
 			free_cmds(data);
+			data->cmds = NULL;
+		}
 		if (data->pipes)
-			close_free_pipes(data);
+		{
+			free_pipes(data);
+			data->pipes = NULL;
+		}
 		if (data->pids_child)
 		{
 			free(data->pids_child);
