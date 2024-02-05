@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	if (data == NULL)
 		return (err_msg("t_data allocation failed"), -1);
 	if (check_args(argc) == -1)
-		return (clean_up(data), 2);
+		return (free(data), 2);
 	if (init_data(argc, argv, data) == -1)
 		return (clean_up(data), EXIT_FAILURE);
 	if (set_data(data) == -1)
