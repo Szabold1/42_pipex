@@ -12,6 +12,7 @@
 
 #include "../include_bonus/pipex_bonus.h"
 
+// print error message and errno if available
 void	err_msg(char *msg)
 {
 	ft_printf_fd(STDERR_FILENO, "pipex: ");
@@ -25,6 +26,7 @@ void	err_msg(char *msg)
 		ft_printf_fd(STDERR_FILENO, "error\n");
 }
 
+// print error message for command not found
 void	err_cmd(char *cmd)
 {
 	if (cmd)

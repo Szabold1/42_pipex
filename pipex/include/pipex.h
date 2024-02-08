@@ -66,7 +66,7 @@ int		exec_cmds(t_data *data);
 int		init_data(int argc, char *argv[], t_data *data);
 // File: init_data.c
 
-int		main(int argc, char **argv);
+int		main(int argc, char *argv[]);
 // File: main.c
 
 int		set_cmds(t_data *data);

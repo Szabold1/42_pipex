@@ -30,6 +30,7 @@ static void	free_array(char **array)
 	}
 }
 
+// free memory allocated for the commands
 static void	free_cmds(t_data *data)
 {
 	int	i;
@@ -59,6 +60,7 @@ static void	free_cmds(t_data *data)
 	data->cmds = NULL;
 }
 
+// free memory allocated for the pipes
 static void	free_pipes(t_data *data)
 {
 	int	i;
@@ -76,6 +78,7 @@ static void	free_pipes(t_data *data)
 	data->pipes = NULL;
 }
 
+// close file descriptors (pipes, input and output)
 void	close_fds(t_data *data)
 {
 	int	i;
@@ -93,6 +96,7 @@ void	close_fds(t_data *data)
 		close(data->out_fd);
 }
 
+// clean up everything
 void	clean_up(t_data *data)
 {
 	if (data)
