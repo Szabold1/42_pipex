@@ -41,25 +41,32 @@ typedef struct s_data
 	pid_t	*pids_child;
 }	t_data;
 
-// File: errors.c
-void	err_msg(char *msg);
-void	err_cmd(char *cmd);
-// File: execute.c
-int		exec_cmds(t_data *data);
-// File: clean_up.c
 void	close_fds(t_data *data);
 void	clean_up(t_data *data);
-// File: init_data.c
+// File: clean_up_bonus.c
+
+void	err_msg(char *msg);
+void	err_cmd(char *cmd);
+// File: errors_bonus.c
+
+int		exec_cmds(t_data *data);
+// File: execute_bonus.c
+
 int		init_data(int argc, char *argv[], t_data *data);
-// File: main.c
+// File: init_data_bonus.c
+
 int		main(int argc, char **argv);
-// File: set_data_cmds.c
+// File: main_bonus.c
+
+int		set_data(t_data *data);
+// File: set_data_bonus.c
+
 int		set_cmds(t_data *data);
-// File: set_data_files.c
+// File: set_data_cmds_bonus.c
+
 int		set_here_doc(t_data *data);
 int		set_infile(t_data *data);
 int		set_outfile(t_data *data);
-// File: set_data.c
-int		set_data(t_data *data);
+// File: set_data_files_bonus.c
 
 #endif

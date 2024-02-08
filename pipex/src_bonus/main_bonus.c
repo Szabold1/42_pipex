@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // check if arguments are valid
 // return 0 if valid, otherwise return -1

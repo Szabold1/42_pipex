@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // open 'filename' and return its file descriptor, or -1 if error occurs
 // flag = 0: read only (infile)

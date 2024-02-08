@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // set all the data in t_data struct
 // return 0 if successful, otherwise return -1

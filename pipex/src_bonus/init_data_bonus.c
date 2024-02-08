@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // fill up all the t_cmd structs with initial values
 // return 0 if successful, otherwise return -1

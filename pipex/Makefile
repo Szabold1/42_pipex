@@ -20,22 +20,22 @@ SRC_BONUS_DIR = src_bonus
 
 # Source Files
 SRC = clean_up.c \
-	  errors.c \
-	  execute.c \
-	  init_data.c \
-	  main.c \
-	  set_data_cmds.c \
-	  set_data_files.c \
-	  set_data.c
+		errors.c \
+		execute.c \
+		init_data.c \
+		main.c \
+		set_data.c \
+		set_data_cmds.c \
+		set_data_files.c
 
-SRC_BONUS = b_clean_up.c \
-			b_errors.c \
-			b_execute.c \
-			b_init_data.c \
-			b_main.c \
-			b_set_data_cmds.c \
-			b_set_data_files.c \
-			b_set_data.c
+SRC_BONUS = clean_up_bonus.c \
+			errors_bonus.c \
+			execute_bonus.c \
+			init_data_bonus.c \
+			main_bonus.c \
+			set_data_bonus.c \
+			set_data_cmds_bonus.c \
+			set_data_files_bonus.c
 
 # Object Files
 OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)

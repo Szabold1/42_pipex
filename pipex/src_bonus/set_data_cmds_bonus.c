@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // check if the cmd is an absolute path
 // if yes, set path and return 0, if not, return -1
@@ -65,7 +65,7 @@ static int	set_cmd_path(t_data *data, t_cmd *cmd_d)
 // set paths_arr with PATH environment variable
 // if PATH is not found or env is empty, set paths_arr to NULL
 // if successful, return 0, otherwise return -1
-int	set_paths_arr(t_data *data)
+static int	set_paths_arr(t_data *data)
 {
 	int		i;
 

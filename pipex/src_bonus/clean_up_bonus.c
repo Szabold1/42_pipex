@@ -1,4 +1,4 @@
-#include "../include/pipex_bonus.h"
+#include "../include_bonus/pipex_bonus.h"
 
 // free a 2d array of strings and set it to NULL
 static void	free_array(char **array)
