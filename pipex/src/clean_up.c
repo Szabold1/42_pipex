@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_up.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 12:07:41 by bszabo            #+#    #+#             */
+/*   Updated: 2024/02/08 12:08:01 by bszabo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pipex.h"
 
 // free a 2d array of strings and set it to NULL
@@ -18,7 +30,7 @@ static void	free_array(char **array)
 	}
 }
 
-void	free_cmds(t_data *data)
+static void	free_cmds(t_data *data)
 {
 	int	i;
 
@@ -47,7 +59,7 @@ void	free_cmds(t_data *data)
 	data->cmds = NULL;
 }
 
-void	free_pipes(t_data *data)
+static void	free_pipes(t_data *data)
 {
 	int	i;
 

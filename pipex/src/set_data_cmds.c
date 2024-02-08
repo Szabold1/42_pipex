@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_data_cmds.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 12:09:44 by bszabo            #+#    #+#             */
+/*   Updated: 2024/02/08 12:09:47 by bszabo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pipex.h"
 
 // check if the cmd is an absolute path
@@ -65,7 +77,7 @@ static int	set_cmd_path(t_data *data, t_cmd *cmd_d)
 // set paths_arr with PATH environment variable
 // if PATH is not found or env is empty, set paths_arr to NULL
 // if successful, return 0, otherwise return -1
-int	set_paths_arr(t_data *data)
+static int	set_paths_arr(t_data *data)
 {
 	int		i;
 

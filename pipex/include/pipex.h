@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 12:04:38 by bszabo            #+#    #+#             */
+/*   Updated: 2024/02/08 12:04:57 by bszabo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -40,25 +52,32 @@ typedef struct s_data
 	pid_t	*pids_child;
 }	t_data;
 
-// File: errors.c
-void	err_msg(char *msg);
-void	err_cmd(char *cmd);
-// File: execute.c
-int		exec_cmds(t_data *data);
-// File: clean_up.c
 void	close_fds(t_data *data);
 void	clean_up(t_data *data);
-// File: init_data.c
+// File: clean_up.c
+
+void	err_msg(char *msg);
+void	err_cmd(char *cmd);
+// File: errors.c
+
+int		exec_cmds(t_data *data);
+// File: execute.c
+
 int		init_data(int argc, char *argv[], t_data *data);
-// File: main.c
+// File: init_data.c
+
 int		main(int argc, char **argv);
-// File: set_data_cmds.c
+// File: main.c
+
 int		set_cmds(t_data *data);
-// File: set_data_files.c
+// File: set_data_cmds.c
+
 int		set_here_doc(t_data *data);
 int		set_infile(t_data *data);
 int		set_outfile(t_data *data);
-// File: set_data.c
+// File: set_data_files.c
+
 int		set_data(t_data *data);
+// File: set_data.c
 
 #endif

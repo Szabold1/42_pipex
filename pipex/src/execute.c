@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   execute.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 12:08:19 by bszabo            #+#    #+#             */
+/*   Updated: 2024/02/08 12:08:22 by bszabo           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/pipex.h"
 
 // set stdin and stdout to the right pipes, if it fails, exit
@@ -14,7 +26,7 @@ static void	set_std_in_out(int std_in, int std_out, t_data *data)
 
 // handle the case where infile is invalid,
 // and the first command should be skipped
-void	handle_skip_first_cmd(t_data *data, int i)
+static void	handle_skip_first_cmd(t_data *data, int i)
 {
 	if (i == 1 && data->nb_cmds == 2)
 		set_std_in_out(data->in_fd, data->out_fd, data);

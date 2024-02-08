@@ -24,9 +24,9 @@ SRC = clean_up.c \
 		execute.c \
 		init_data.c \
 		main.c \
-		set_data.c \
 		set_data_cmds.c \
-		set_data_files.c
+		set_data_files.c \
+		set_data.c
 
 SRC_BONUS = clean_up_bonus.c \
 			errors_bonus.c \
