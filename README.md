@@ -113,8 +113,11 @@ The following functions were allowed for use in this project:
 
 <br>
 
-Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
-
-&#xa0;
-
-<a href="#top">Back to top</a>
+<footer display="flex" justify-content="space-between">
+  <div>
+    Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
+  </div>
+  <div>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
