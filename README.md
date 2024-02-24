@@ -74,13 +74,13 @@ cmd << LIMITER | cmd1 >> file
 
 ## Usage
 
-To create pipex, run the following command inside the pipex folder:
+To create `pipex`, run the following command inside the pipex folder:
 
 ```shell
 make
 ```
 
-To create pipex_bonus, run the following command inside the pipex folder:
+To create `pipex_bonus`, run the following command inside the pipex folder:
 
 ```shell
 make bonus
