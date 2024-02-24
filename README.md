@@ -58,7 +58,7 @@ Here's how it works:
 
 ```shell
 # pipex_bonus version
-./pipex infile cmd1 cmd2 cmd3 ... cmdn outfile
+./pipex_bonus infile cmd1 cmd2 cmd3 ... cmdn outfile
 # Unix version
 < infile cmd1 | cmd2 | cmd3 ... | cmdn > outfile
 ```
@@ -67,7 +67,7 @@ Here's how it works:
 
 ```shell
 # pipex_bonus version
-./pipex here_doc LIMITER cmd cmd1 file
+./pipex_bonus here_doc LIMITER cmd cmd1 file
 # Unix version
 cmd << LIMITER | cmd1 >> file
 ```
