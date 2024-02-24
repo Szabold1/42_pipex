@@ -1,11 +1,11 @@
-<h1 align="center">42_pipex</h1>
+<h1 align="center" id="top">42_pipex</h1>
 
 <p align="center">
   <a href="#about">About</a> &#xa0; | &#xa0; 
   <a href="#examples">Examples</a> &#xa0; | &#xa0;
-  <a href="#bonus_functionalities">Bonus functionalities</a> &#xa0; | &#xa0;
+  <a href="#bonus-functionalities">Bonus functionalities</a> &#xa0; | &#xa0;
   <a href="#usage">Usage</a> &#xa0; | &#xa0;
-  <a href="#allowed_functions">Allowed functions</a> &#xa0; | &#xa0;
+  <a href="#allowed-functions">Allowed functions</a> &#xa0; | &#xa0;
   <a href="https://github.com/Szabold1" target="_blank">Author</a>
 </p>
 
@@ -111,9 +111,9 @@ The following functions were allowed for use in this project:
 | wait         | man 2 wait     | Waits for a child process to terminate                                   |
 | waitpid      | man 2 waitpid  | Waits for a specific child process to terminate                          |
 
-Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
-
 <br>
+
+Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
 
 &#xa0;
 
