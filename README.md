@@ -1,36 +1,4 @@
-<div align="center" id="top"> 
-  <img src="./.github/app.gif" alt="42_pipex" />
-
-&#xa0;
-
-  <!-- <a href="https://42_pipex.netlify.app">Demo</a> -->
-</div>
-
 <h1 align="center">42_pipex</h1>
-
-<p align="center">
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8">
-
-  <img alt="Github language count" src="https://img.shields.io/github/languages/count/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8">
-
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8">
-
-  <img alt="License" src="https://img.shields.io/github/license/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8">
-
-  <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8" /> -->
-
-  <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8" /> -->
-
-  <!-- <img alt="Github stars" src="https://img.shields.io/github/stars/{{YOUR_GITHUB_USERNAME}}/42_pipex?color=56BEB8" /> -->
-</p>
-
-<!-- Status -->
-
-<!-- <h4 align="center">
-	🚧  42_pipex 🚀 Under construction...  🚧
-</h4>
-
-<hr> -->
 
 <p align="center">
   <a href="#about">About</a> &#xa0; | &#xa0; 
@@ -108,7 +76,7 @@ cmd << LIMITER | cmd1 >> file
 
 To create pipex, run the following command inside the pipex folder:
 
-```shell
+```bash
 make
 ```
 
@@ -122,27 +90,28 @@ make bonus
 
 The following functions were allowed for use in this project:
 
-| **Function** | **Man** | **Short Description** |
-| open | man 2 open | Opens a file or device and returns a file descriptor |
-| close | man 2 close | Closes a file descriptor |
-| read | man 2 read | Reads data from a file descriptor |
-| write | man 2 write | Writes data to a file descriptor |
-| malloc | man 3 malloc | Allocates a block of memory dynamically |
-| free | man 3 free | Deallocates a block of memory |
-| perror | man 3 perror | Prints a descriptive error message to stderr based on the value of errno |
-| strerror | man 3 strerror | Returns a string describing the error code passed as argument |
-| access | man 2 access | Checks the accessibility of a file or directory |
-| dup | man 2 dup | Duplicates a file descriptor |
-| dup2 | man 2 dup2 | Duplicates a file descriptor to a specified new descriptor |
-| execve | man 2 execve | Executes a program |
-| exit | man 3 exit | Terminates the calling process |
-| fork | man 2 fork | Creates a new process |
-| pipe | man 2 pipe | Creates a pipe, a unidirectional communication channel |
-| unlink | man 2 unlink | Deletes a name from the filesystem |
-| wait | man 2 wait | Waits for a child process to terminate |
-| waitpid | man 2 waitpid | Waits for a specific child process to terminate |
+| **Function** | **Man**        | **Short Description**                                                    |
+| ------------ | -------------- | ------------------------------------------------------------------------ |
+| open         | man 2 open     | Opens a file or device and returns a file descriptor                     |
+| close        | man 2 close    | Closes a file descriptor                                                 |
+| read         | man 2 read     | Reads data from a file descriptor                                        |
+| write        | man 2 write    | Writes data to a file descriptor                                         |
+| malloc       | man 3 malloc   | Allocates a block of memory dynamically                                  |
+| free         | man 3 free     | Deallocates a block of memory                                            |
+| perror       | man 3 perror   | Prints a descriptive error message to stderr based on the value of errno |
+| strerror     | man 3 strerror | Returns a string describing the error code passed as argument            |
+| access       | man 2 access   | Checks the accessibility of a file or directory                          |
+| dup          | man 2 dup      | Duplicates a file descriptor                                             |
+| dup2         | man 2 dup2     | Duplicates a file descriptor to a specified new descriptor               |
+| execve       | man 2 execve   | Executes a program                                                       |
+| exit         | man 3 exit     | Terminates the calling process                                           |
+| fork         | man 2 fork     | Creates a new process                                                    |
+| pipe         | man 2 pipe     | Creates a pipe, a unidirectional communication channel                   |
+| unlink       | man 2 unlink   | Deletes a name from the filesystem                                       |
+| wait         | man 2 wait     | Waits for a child process to terminate                                   |
+| waitpid      | man 2 waitpid  | Waits for a specific child process to terminate                          |
 
-Made by <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">{{YOUR_NAME}}</a>
+Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
 
 &#xa0;
 
