@@ -6,7 +6,7 @@
   <a href="#bonus_functionalities">Bonus functionalities</a> &#xa0; | &#xa0;
   <a href="#usage">Usage</a> &#xa0; | &#xa0;
   <a href="#allowed_functions">Allowed functions</a> &#xa0; | &#xa0;
-  <a href="https://github.com/{{YOUR_GITHUB_USERNAME}}" target="_blank">Author</a>
+  <a href="https://github.com/Szabold1" target="_blank">Author</a>
 </p>
 
 <br>
@@ -76,7 +76,7 @@ cmd << LIMITER | cmd1 >> file
 
 To create pipex, run the following command inside the pipex folder:
 
-```bash
+```shell
 make
 ```
 
@@ -112,6 +112,8 @@ The following functions were allowed for use in this project:
 | waitpid      | man 2 waitpid  | Waits for a specific child process to terminate                          |
 
 Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
+
+<br>
 
 &#xa0;
 
