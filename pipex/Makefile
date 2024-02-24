@@ -1,18 +1,22 @@
 # Makefile for Pipex
 
-# Compiler and Flags
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR)
-
-# Target Binary
-NAME = pipex
-NAME_BONUS = $(NAME)_bonus
-
 # File and Directory Management
 RM = rm -f
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft_full.a
 LIBS = -L$(LIBFT_DIR) -lft_full
+
+# Headers
+HEADERS_DIR = ./include
+HEADERS = $(HEADERS_DIR)/pipex.h
+
+# Compiler and Flags
+CC = cc
+CFLAGS = -Wall -Wextra -Werror -I$(LIBFT_DIR) -I$(HEADERS_DIR)
+
+# Target Binary
+NAME = pipex
+NAME_BONUS = $(NAME)_bonus
 
 # Source Directories
 SRC_DIR = src
@@ -42,28 +46,11 @@ OBJ = $(SRC:%.c=$(SRC_DIR)/%.o)
 OBJ_BONUS = $(SRC_BONUS:%.c=$(SRC_BONUS_DIR)/%.o)
 
 # Compilation Rules
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(SRC_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
+$(SRC_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@
-
-# Target Rules
-$(NAME): $(LIBFT) $(OBJ)
-	@echo "🔨 compiling $(NAME)"
-	@$(CC) $(OBJ) $(LIBS) -o $(NAME)
-	@echo "✅ $(NAME) compiled"
-
-$(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
-	@echo "🔨 compiling $(NAME_BONUS)"
-	@$(CC) $(OBJ_BONUS) $(LIBS) -o $(NAME_BONUS)
-	@echo "✅ $(NAME_BONUS) compiled"
-
-# Library Compilation
-$(LIBFT): $(LIBFT_DIR)
-	@echo "🔨 compiling libft"
-	@cd $(LIBFT_DIR) && $(MAKE) full
-	@echo "✅ libft compiled"
 
 # Phony Targets
 all: $(NAME)
@@ -85,4 +72,21 @@ bonus: $(NAME_BONUS)
 
 rebonus: fclean bonus
 
-.PHONY: all clean fclean re bonus
+# Target Rules
+$(NAME): $(LIBFT) $(OBJ)
+	@echo "🔨 compiling $(NAME)"
+	@$(CC) $(OBJ) $(LIBS) -o $(NAME)
+	@echo "✅ $(NAME) compiled"
+
+$(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
+	@echo "🔨 compiling $(NAME_BONUS)"
+	@$(CC) $(OBJ_BONUS) $(LIBS) -o $(NAME_BONUS)
+	@echo "✅ $(NAME_BONUS) compiled"
+
+# Library Compilation
+$(LIBFT): $(LIBFT_DIR)
+	@echo "🔨 compiling libft"
+	@cd $(LIBFT_DIR) && $(MAKE) full
+	@echo "✅ libft compiled"
+
+.PHONY: all clean fclean re bonus rebonus
