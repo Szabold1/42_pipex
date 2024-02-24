@@ -1,4 +1,4 @@
-<h1 align="center" id="top">42_pipex</h1>
+<h1 align="center">42_pipex</h1>
 
 <p align="center">
   <a href="#about">About</a> &#xa0; | &#xa0; 
@@ -113,11 +113,6 @@ The following functions were allowed for use in this project:
 
 <br>
 
-<footer display="flex" justify-content="space-between">
-  <div>
-    Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
-  </div>
-  <div>
-    <a href="#top">Back to top</a>
-  </div>
-</footer>
+<div align="center">
+  Made by <a href="https://github.com/Szabold1" target="_blank">Boldizsar Szabo</a>
+</div>
