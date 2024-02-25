@@ -85,8 +85,8 @@ $(NAME_BONUS): $(LIBFT) $(OBJ_BONUS)
 
 # Library Compilation
 $(LIBFT): $(LIBFT_DIR)
-	@echo "🔨 compiling libft"
+	@echo "🔨 creating libft"
 	@cd $(LIBFT_DIR) && $(MAKE) full
-	@echo "✅ libft compiled"
+	@echo "✅ libft created"
 
 .PHONY: all clean fclean re bonus rebonus
