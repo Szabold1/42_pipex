@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // check if s1 and s2 are valid
 // return 0 if valid, otherwise return -1

@@ -6,7 +6,7 @@
 /*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 10:48:30 by bszabo            #+#    #+#             */
-/*   Updated: 2023/09/12 12:01:53 by bszabo           ###   ########.fr       */
+/*   Updated: 2024/02/23 23:28:05 by bszabo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // buffer for get_next_line
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 50
+#  define BUFFER_SIZE 42
 # endif
 
 # include <stddef.h>
@@ -81,14 +81,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_strcmp(char *s1, char *s2);
 
 // get_next_line functions
-// File: get_next_line_utils.c
-char	*ft_strchr(const char *str, int c);
-size_t	ft_strlen(const char *str);
-char	*gnl_strjoin(char *s1, char *s2);
 // File: get_next_line.c
-char	*handle_read(int fd, char *str);
-char	*get_line(char *str);
-char	*handle_rest(char *str);
 char	*get_next_line(int fd);
 
 // ft_printf functions

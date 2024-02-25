@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // count number of substrings in string 'str' separated by char 'c'
 static int	count_substrs(char const *str, char c)

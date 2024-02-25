@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // iterate the list ’lst’ and apply the function ’f’ to the content of each node
 // return a new list containing the new content values

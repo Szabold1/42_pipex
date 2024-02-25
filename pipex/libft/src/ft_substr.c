@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // return substring from 'str' starting at index 'start' and of length 'len'
 char	*ft_substr(char const *str, unsigned int start, size_t len)

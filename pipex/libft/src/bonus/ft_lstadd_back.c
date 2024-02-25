@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // add the node ’new’ at the end of the list
 // if the list is empty, the new node is the beginning of the list

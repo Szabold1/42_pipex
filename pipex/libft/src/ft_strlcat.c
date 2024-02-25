@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // concatenate string 'src' to string 'dest' up to 'size' characters
 size_t	ft_strlcat(char *dest, const char *src, size_t size)

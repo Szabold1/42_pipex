@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // locate the first occurrence of the string 'str_sm' in 'str_lg'
 // where not more than 'n' characters are searched

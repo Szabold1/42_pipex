@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // output integer 'n' to file descriptor 'fd'
 void	ft_putnbr_fd(int n, int fd)

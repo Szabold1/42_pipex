@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // print a character to fd and return the number of characters written
 int	print_char_fd(int c, int fd)

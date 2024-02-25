@@ -6,112 +6,82 @@
 /*   By: bszabo <bszabo@student.42vienna.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 11:14:19 by bszabo            #+#    #+#             */
-/*   Updated: 2023/10/09 11:14:28 by bszabo           ###   ########.fr       */
+/*   Updated: 2024/02/23 23:30:57 by bszabo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
-// read from fd into str until there is a new line
-char	*handle_read(int fd, char *str)
+// concatenate 's1' and 's2' into a new string and return a pointer to it
+static char	*gnl_strjoin(char *s1, char *s2)
 {
-	char	*temp;
-	int		bytes_read;
+	char	*str;
+	int		s1_len;
+	int		s2_len;
 
-	temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (!temp)
+	if (!s1 && !s2)
 		return (NULL);
-	bytes_read = 1;
-	while (!ft_strchr(str, '\n') && bytes_read != 0)
-	{
-		bytes_read = read(fd, temp, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(temp);
-			return (NULL);
-		}
-		temp[bytes_read] = '\0';
-		str = gnl_strjoin(str, temp);
-	}
-	free(temp);
+	s1_len = ft_strlen(s1);
+	s2_len = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (s1_len + s2_len + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, s1_len + 1);
+	ft_strlcpy(str + s1_len, s2, s2_len + 1);
+	free(s1);
 	return (str);
 }
 
-// return a string until \n or end of string is reached
-char	*get_line(char *str)
+// read from 'fd' into 'line' until a newline is reached
+// return 0 if successful, -1 if an error occurred
+static int	read_line(int fd, char **line, char buffer[BUFFER_SIZE + 1])
 {
-	int		i;
-	char	*line;
+	int	bytes_read;
 
-	i = 0;
-	if (!str[i])
-		return (NULL);
-	while (str[i] && str[i] != '\n')
-		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
-	if (!line)
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != '\n')
+	bytes_read = 1;
+	while (!ft_strchr(*line, '\n') && bytes_read > 0)
 	{
-		line[i] = str[i];
-		i++;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return (-1);
+		buffer[bytes_read] = '\0';
+		*line = gnl_strjoin(*line, buffer);
 	}
-	if (str[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
+	if (ft_strlen(*line) == 0)
+		return (-1);
+	return (0);
 }
 
-// return the string after \n
-char	*handle_rest(char *str)
+// cpy the 'next_line' into 'buffer' and correctly null-terminate 'line'
+static void	set_next_line(char *line, char buffer[BUFFER_SIZE + 1])
 {
-	int		i;
-	int		j;
-	char	*rest;
+	char	*next_line;
+	int		line_end;
 
-	i = 0;
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\0')
+	next_line = ft_strchr(line, '\n');
+	if (next_line)
 	{
-		free(str);
-		return (NULL);
+		line_end = next_line - line + 1;
+		ft_strlcpy(buffer, next_line + 1, BUFFER_SIZE + 1);
 	}
-	rest = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
-	if (!rest)
+	else
 	{
-		free(str);
-		return (NULL);
+		line_end = ft_strlen(line);
+		ft_strlcpy(buffer, "", BUFFER_SIZE + 1);
 	}
-	i++;
-	j = 0;
-	while (str[i])
-		rest[j++] = str[i++];
-	rest[j] = '\0';
-	free(str);
-	return (rest);
+	line[line_end] = '\0';
 }
 
-// read from file descriptor fd and return the next line
-// 1. read from fd into str until there is a new line
-// 2. save string until \n into line
-// 3. update str to the string after \n
-// when function gets called again, it will remember str because of static
+// read from 'fd' and return a line from the file
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	str = handle_read(fd, str);
-	if (!str)
-		return (NULL);
-	line = get_line(str);
-	if (!line)
-		return (NULL);
-	str = handle_rest(str);
+	line = ft_strdup(buffer);
+	if (read_line(fd, &line, buffer) == -1)
+		return (free(line), NULL);
+	set_next_line(line, buffer);
 	return (line);
 }
 /*

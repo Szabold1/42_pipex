@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // iterate the list ’lst’ and apply the function ’f’ to the content of each
 void	ft_lstiter(t_list *lst, void (*f)(void *))

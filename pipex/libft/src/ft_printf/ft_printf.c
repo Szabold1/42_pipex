@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // check character after '%', if it is a valid specifier, handle it
 // if it is not a valid specifier, just return without doing anything

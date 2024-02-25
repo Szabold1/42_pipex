@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // allocate memory for num elements of size bytes each, set all values to zero
 // return a pointer to the allocated memory

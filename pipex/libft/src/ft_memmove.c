@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // copy 'n' bytes from 'src' to 'dest'
 // the memory areas may overlap

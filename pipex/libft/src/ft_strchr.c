@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // check if string 'str' contains char 'c'
 // return pointer to first occurrence of 'c' in 'str', or NULL if not found

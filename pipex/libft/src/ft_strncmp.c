@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // compare the first 'n' characters of 'str1' and 'str2'
 // return 0 if they are identical

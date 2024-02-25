@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // output char 'c' to file descriptor 'fd'
 void	ft_putchar_fd(char c, int fd)

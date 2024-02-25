@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // copy up to size - 1 characters from the NUL-terminated string 'src'
 // to 'dest', NUL-terminating the result

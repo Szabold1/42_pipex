@@ -12,9 +12,13 @@ SRC_GNL_DIR = $(SRC_DIR)/get_next_line
 SRC_PRINTF_DIR = $(SRC_DIR)/ft_printf
 SRC_PRINTF_FD_DIR = $(SRC_DIR)/ft_printf_fd
 
+# Headers
+HEADERS_DIR = ./include
+HEADERS = $(HEADERS_DIR)/libft.h
+
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I$(HEADERS_DIR)
 
 # Archiver
 AR = ar rcs
@@ -60,21 +64,20 @@ SRC = ft_atoi.c \
       ft_toupper.c
 
 SRC_BONUS = ft_lstadd_back.c \
-             ft_lstadd_front.c \
-             ft_lstclear.c \
-             ft_lstdelone.c \
-             ft_lstiter.c \
-             ft_lstlast.c \
-             ft_lstmap.c \
-             ft_lstnew.c \
-             ft_lstsize.c
+            ft_lstadd_front.c \
+            ft_lstclear.c \
+            ft_lstdelone.c \
+            ft_lstiter.c \
+            ft_lstlast.c \
+            ft_lstmap.c \
+            ft_lstnew.c \
+            ft_lstsize.c
 
-SRC_GNL = get_next_line_utils.c \
-          get_next_line.c
+SRC_GNL = get_next_line.c
 
 SRC_PRINTF = ft_printf_utils.c \
-            ft_printf_utils2.c \
-            ft_printf.c
+             ft_printf_utils2.c \
+             ft_printf.c
 
 SRC_PRINTF_FD = ft_printf_fd_utils.c \
                 ft_printf_fd_utils2.c \
@@ -88,18 +91,8 @@ OBJ_PRINTF = $(SRC_PRINTF:%.c=$(SRC_PRINTF_DIR)/%.o)
 OBJ_PRINTF_FD = $(SRC_PRINTF_FD:%.c=$(SRC_PRINTF_FD_DIR)/%.o)
 OBJ_FULL = $(OBJ) $(OBJ_BONUS) $(OBJ_GNL) $(OBJ_PRINTF) $(OBJ_PRINTF_FD)
 
-# Build library
-$(NAME): $(OBJ)
-	@$(AR) $(NAME) $(OBJ)
-
-$(NAME_BONUS): $(OBJ_BONUS)
-	@$(AR) $(NAME_BONUS) $(OBJ_BONUS)
-
-$(NAME_FULL): $(OBJ_FULL)
-	@$(AR) $(NAME_FULL) $(OBJ_FULL)
-
 # Compile individual source files
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+$(SRC_DIR)/%.o: $(SRC_DIR)/%.c $(HEADERS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 # Phony Targets
@@ -117,5 +110,15 @@ bonus: $(NAME_BONUS)
 
 # (bonus, get_next_line, ft_printf, ft_printf_fd)
 full: $(NAME_FULL)
+
+# Target Rules
+$(NAME): $(OBJ)
+	@$(AR) $(NAME) $(OBJ)
+
+$(NAME_BONUS): $(OBJ_BONUS)
+	@$(AR) $(NAME_BONUS) $(OBJ_BONUS)
+
+$(NAME_FULL): $(OBJ_FULL)
+	@$(AR) $(NAME_FULL) $(OBJ_FULL)
 
 .PHONY: all clean fclean re bonus full

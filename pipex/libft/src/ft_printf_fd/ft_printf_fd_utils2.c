@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // print lowercase or uppercase hexadecimal number to stdout
 // return the number of characters written

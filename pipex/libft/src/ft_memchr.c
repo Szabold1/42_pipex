@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "libft.h"
 
 // scan 'n' bytes from beginning of 'ptr' for first occurrence of 'c'
 // return pointer to the matching byte or NULL if no match

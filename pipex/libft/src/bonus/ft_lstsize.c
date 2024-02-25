@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/libft.h"
+#include "libft.h"
 
 // count the number of nodes in a linked list
 int	ft_lstsize(t_list *lst)
